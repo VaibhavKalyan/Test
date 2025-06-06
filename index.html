@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Full Animated Website</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f9fafb;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    ul {
+      list-style: none;
+    }
+
+    /* Header */
+    header {
+      background: #222e50;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    nav ul {
+      display: flex;
+      gap: 25px;
+    }
+    nav ul li {
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    nav ul li:hover {
+      color: #4a90e2;
+    }
+
+    /* Main content */
+    main {
+      max-width: 960px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: white;
+      padding: 40px 30px;
+      margin-bottom: 50px;
+      border-radius: 8px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #222e50;
+    }
+    section p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    section ul {
+      margin-top: 15px;
+    }
+    section ul li {
+      margin-bottom: 10px;
+      color: #555;
+      font-size: 1.05rem;
+    }
+
+    /* Call to action button */
+    .btn-primary {
+      display: inline-block;
+      background: #4a90e2;
+      color: white;
+      padding: 16px 36px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(74, 144, 226, 0.5);
+    }
+
+    /* Footer */
+    footer {
+      background: #222e50;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: 80px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      section {
+        padding: 30px 20px;
+      }
+      .btn-primary {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MySite</div>
+  <nav>
+    <ul>
+      <li><a href="#home" tabindex="1">Home</a></li>
+      <li><a href="#about" tabindex="2">About</a></li>
+      <li><a href="#services" tabindex="3">Services</a></li>
+      <li><a href="#contact" tabindex="4">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section id="home" tabindex="0">
+    <h2>Welcome to MySite</h2>
+    <p>Discover a beautiful website with smooth animations and responsive design built with simple HTML, CSS, and JavaScript.</p>
+    <button class="btn-primary" onclick="alert('Thanks for clicking!')">Get Started</button>
+  </section>
+
+  <section id="about" tabindex="0">
+    <h2>About Us</h2>
+    <p>We create modern websites that are easy to use, accessible, and engaging. Our animations help guide users and improve experience.</p>
+    <ul>
+      <li>Clean code and simple structure</li>
+      <li>Mobile-friendly and responsive</li>
+      <li>Animated sections that fade in on scroll</li>
+    </ul>
+  </section>
+
+  <section id="services" tabindex="0">
+    <h2>Our Services</h2>
+    <p>We offer a wide range of digital solutions to help grow your business online.</p>
+    <ul>
+      <li>Website design and development</li>
+      <li>SEO and digital marketing</li>
+      <li>Custom animations and interactivity</li>
+    </ul>
+  </section>
+
+  <section id="contact" tabindex="0">
+    <h2>Contact Us</h2>
+    <p>Have questions? Reach out to us anytime!</p>
+    <p>Email: <a href="mailto:contact@mysite.com">contact@mysite.com</a></p>
+    <p>Phone: +1 (555) 123-4567</p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 MySite. All rights reserved.
+</footer>
+
+<script>
+  // Fade-in animation on scroll
+  function handleScroll() {
+    const sections = document.querySelectorAll('section');
+    const triggerPoint = window.innerHeight * 0.85;
+
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < triggerPoint) {
+        section.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', handleScroll);
+</script>
+
+</body>
+</html>
